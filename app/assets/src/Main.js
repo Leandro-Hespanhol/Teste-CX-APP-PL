@@ -7,12 +7,30 @@ client.metadata().then((metadata) => {
   settings = metadata.settings;
 });
 
+function init() {
+  getCurrentUser().then((currentUser) => {
+    renderText('Olá ' + currentUser.name + ', favor alterar o ticket conforme entender necessário.');
+
+    client.on('*.changed', function(event) {
+      let text = currentUser.name + ' alterou ' +
+        event.propertyName + ' para ' + event.newValue + '.';
+
+      renderText(text);
+    });
+  });
+}
+
 const Main = async () => {
   const App = document.getElementById("app");
-  let appBody = `<div id="main-content"></div>`;
 
+  let appBody = document.createElement("div")
+  appBody.id = 'main-content';
+  App.appendChild(appBody);
+  // `<div id="main-content"></div>`;
   // Write App
-  App.innerHTML = appBody;
+  Core.textInputButton();
+  Core.updateEvent();
+  init();
 };
 
 export default Main;
