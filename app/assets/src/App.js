@@ -1,4 +1,5 @@
 // Start client and resize app
+import Main from "./Main.js";
 let client = ZAFClient.init();
 
 client.on("app.registered", (_e) => {
@@ -6,5 +7,5 @@ client.on("app.registered", (_e) => {
 });
 
 // Create screen context
-import Main from "./Main.js";
+// client.set("/api/v2/tickets/{ticket_id}")
 Main();
