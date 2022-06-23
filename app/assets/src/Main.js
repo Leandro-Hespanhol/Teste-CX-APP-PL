@@ -10,14 +10,18 @@ client.metadata().then((metadata) => {
 const Main = async () => {
   const App = document.getElementById("app");
 
-  let appBody = document.createElement("div");
+  const appBody = document.createElement("div");
+  const divList = document.createElement("div")
   appBody.id = 'main-content';
+  divList.id = 'recent-tickets-list'
   App.appendChild(appBody);
-  // `<div id="main-content"></div>`;
-  // Write App
-  Core.textInputButton();
+  App.appendChild(divList);
+  
+  Core.appendInputButton();
   Core.updateEvent();
-  init();
+  Core.ticketsList();
+  Core.listTicketsEvent();
+  // init();
 };
 
 export default Main;
